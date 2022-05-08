@@ -1,5 +1,7 @@
 # todo
 
-Just getting used to flutter.
+A new Flutter project.
 
-The main point of this project is an all-in-one app of all the things ive learnt
+## Getting Started
+
+This project is a starting point for a Flutter application, comprising of multiple tutorial layouts only for app
