@@ -20,6 +20,38 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Startup name generator',
       home: Scaffold(
+        drawer: Drawer(
+          child: ListView(
+            // Important: Remove any padding from the ListView.
+            padding: EdgeInsets.zero,
+            children: [
+              const DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                ),
+                child: Text('What can this app do?'),
+              ),
+              ListTile(
+                title: const Text('Todo page'),
+                onTap: () {
+                  // Update the state of the app
+                  // ...
+                  // Then close the drawer
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                title: const Text('Item 2'),
+                onTap: () {
+                  // Update the state of the app
+                  // ...
+                  // Then close the drawer
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),
+        ),
         appBar: AppBar(
           title: const Text('Startup name generator'),
         ),
@@ -32,35 +64,33 @@ class MyApp extends StatelessWidget {
 }
 
 class RandomWords extends StatefulWidget {
-  const RandomWords({ Key? key }) : super(key: key);
+  const RandomWords({Key? key}) : super(key: key);
 
   @override
-
   State<RandomWords> createState() => _RandomWordsState();
 }
 
 class _RandomWordsState extends State<RandomWords> {
-  final _suggestions=<WordPair>[];
-  final _biggerFont=const TextStyle(fontSize:18);
+  final _suggestions = <WordPair>[];
+  final _biggerFont = const TextStyle(fontSize: 18);
   @override
   Widget build(BuildContext context) {
-  return ListView.builder(
-    padding: const EdgeInsets.all(16.0),
-    itemBuilder: /*1*/ (context, i) {
-      if (i.isOdd) return const Divider(); /*2*/
+    return ListView.builder(
+      padding: const EdgeInsets.all(16.0),
+      itemBuilder: /*1*/ (context, i) {
+        if (i.isOdd) return const Divider(); /*2*/
 
-      final index = i ~/ 2; /*3*/
-      if (index >= _suggestions.length) {
-        _suggestions.addAll(generateWordPairs().take(10)); /*4*/
-      }
-      return ListTile(
-        title: Text(
-          _suggestions[index].asPascalCase,
-          style: _biggerFont,
-        ),
-      );
-    },
-  );
-  
- }
+        final index = i ~/ 2; /*3*/
+        if (index >= _suggestions.length) {
+          _suggestions.addAll(generateWordPairs().take(10)); /*4*/
+        }
+        return ListTile(
+          title: Text(
+            _suggestions[index].asPascalCase,
+            style: _biggerFont,
+          ),
+        );
+      },
+    );
+  }
 }
