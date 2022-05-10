@@ -70,9 +70,14 @@ class RandomWords extends StatefulWidget {
   State<RandomWords> createState() => _RandomWordsState();
 }
 
+
+
+//this class stores a list of randomwords for startup names, as well as allows users to save
 class _RandomWordsState extends State<RandomWords> {
   final _suggestions = <WordPair>[];
   final _biggerFont = const TextStyle(fontSize: 18);
+  final _saved =
+      <WordPair>{}; //Stores the word pairings that users have favourited
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -84,11 +89,28 @@ class _RandomWordsState extends State<RandomWords> {
         if (index >= _suggestions.length) {
           _suggestions.addAll(generateWordPairs().take(10)); /*4*/
         }
+        final alreadySaved = _saved.contains(_suggestions[index]);//ensure word pairing not already added to favourites
         return ListTile(
           title: Text(
             _suggestions[index].asPascalCase,
             style: _biggerFont,
+          ),//icons added after the text
+          trailing: Icon(
+            alreadySaved ? Icons.favorite: Icons.favorite_border,
+            color: alreadySaved? Colors.red:null,
+            semanticLabel: alreadySaved ? 'Remove from saved' : 'Save',
           ),
+              onTap: (){//here when tile has been tapped, function setState to notify changes
+                setState((){
+                            if (alreadySaved) {
+                      _saved.remove(_suggestions[index]);
+                    } else {
+                      _saved.add(_suggestions[index]);
+                    }
+                });
+              },//here
+
+
         );
       },
     );
