@@ -6,9 +6,7 @@ class Todo {
   final String name;
   bool checked;
   Todo({required this.name, required this.checked});
-
 }
-
 
 //Todoitem single representation for each todo item in our list
 class TodoItem extends StatelessWidget {
@@ -20,8 +18,7 @@ class TodoItem extends StatelessWidget {
   final Todo todo;
   final onTodoChanged;
 
-
-//Textstyle, boolean to evaluate whether a todo is checked or not. If not checked, return nothing, else 
+//Textstyle, boolean to evaluate whether a todo is checked or not. If not checked, return nothing, else
 //returns a single line through text
   TextStyle? _getTextStyle(bool checked) {
     if (!checked) return null;
@@ -31,6 +28,10 @@ class TodoItem extends StatelessWidget {
       decoration: TextDecoration.lineThrough,
     );
   }
+
+
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -46,8 +47,6 @@ class TodoItem extends StatelessWidget {
   }
 }
 
-
-
 class TodoList extends StatefulWidget {
   const TodoList({Key? key}) : super(key: key);
   @override
@@ -61,9 +60,7 @@ class TodoList extends StatefulWidget {
 class _TodoListState extends State<TodoList> {
   final TextEditingController _textFieldController = TextEditingController();
   final List<Todo> _todos = <Todo>[];
-
-
-
+  List<String> _todoItems = [];
 
 //DISPLAY DIALOG TO ADD NEW TODOS -- (from here)
 //setstate invoke state change for addtodoitem, add new todo list to todods
@@ -73,6 +70,40 @@ class _TodoListState extends State<TodoList> {
     });
     _textFieldController.clear();
   }
+
+//(here)
+//test whether can delete off the list
+  void _removeTodoItem(int index) {
+    setState(() {
+      _todos.removeAt(index);
+    });
+  }
+
+  void _promptRemoveTodoItem(int index) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return new AlertDialog(
+              title: new Text('Delete Todo'),
+              actions: <Widget>[
+                new FlatButton(
+                    child: new Text('CANCEL'),
+                    onPressed: () => Navigator.of(context).pop()),
+                new FlatButton(
+                    child: new Text('Deleted'),
+                    onPressed: () {
+                      _removeTodoItem(index);
+                      Navigator.of(context).pop();
+                    })
+              ]);
+        });
+  }
+
+  Widget _buildTodoItem(String todoText, int index) {
+    return new ListTile(
+        title: new Text(todoText), onTap: () => _promptRemoveTodoItem(index));
+  }
+//(to here)
 
 //FAB invoke function _displaydialog when click, to open dialog with text area and as return, create new todo
 //based on value of texture
@@ -102,43 +133,40 @@ class _TodoListState extends State<TodoList> {
   }
 //(to here)
 
-//Crossing todo items off the list
-void _handleTodoChange(Todo todo) {
-	setState(() {
-	  todo.checked = !todo.checked;
-	});
-}
-
+  //Crossing todo items off the list
+  void _handleTodoChange(Todo todo) {
+    setState(() {
+      todo.checked = !todo.checked;
+    
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     //Widget template here
-  return new Scaffold(
-    appBar: new AppBar(
-      title: new Text('Todo List'),
-    ),
-    body: ListView(
-      //padding and edgeinsect to describe the margins
-      padding: EdgeInsets.symmetric(vertical:8.0),
-      children: _todos.map((Todo todo){
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text('Todo List'),
+      ),
+      body: ListView(
+        //padding and edgeinsect to describe the margins
+        padding: EdgeInsets.symmetric(vertical: 8.0),
+        children: _todos.map((Todo todo) {
+          //return todoitem for each element, pass todo and change handler to this widget
+          return TodoItem(
+            todo: todo,
+            onTodoChanged: _handleTodoChange,
+          );
+        }).toList(),
+      ),
 
-
-        //return todoitem for each element, pass todo and change handler to this widget
-        return TodoItem(
-          todo: todo,
-          onTodoChanged: _handleTodoChange,
-          
-        );
-      }).toList(),
-    ),
-
-    floatingActionButton: FloatingActionButton(
-	      onPressed: () => _displayDialog(),
-	      tooltip: 'Add Item',
-	      child: Icon(Icons.add)),
-	);
-}
+      //FAB to add item
+      floatingActionButton: FloatingActionButton(
+          onPressed: () => _displayDialog(),
+          tooltip: 'Add Item',
+          child: Icon(Icons.add)),
+    );
+  }
 
   //other functions
-
 }
