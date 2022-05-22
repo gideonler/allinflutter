@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class Todo {
   //Class that defines todo element, telling flutter what a todo has.
-  // In this case it has a name and check state (bool) test
+  // In this case it has a name and check state (bool)
   final String name;
   bool checked;
   Todo({required this.name, required this.checked});
