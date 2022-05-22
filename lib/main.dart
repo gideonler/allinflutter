@@ -54,6 +54,16 @@ class MyApp extends StatelessWidget {
                 );
               },
             ),
+
+            ListTile(
+              title: const Text('API Call'),
+              leading: Icon(Icons.add_comment),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+              },
+            ),
           ],
         ),
       ),
