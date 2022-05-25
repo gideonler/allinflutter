@@ -6,4 +6,5 @@ A new Flutter project.
 
 - Namegenerator
 - Todo
-- What else?
+- SQFlite Database
+- Newspaper Rest API integration
