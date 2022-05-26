@@ -1,10 +1,10 @@
 # What is this?
 
-A new Flutter project.
+Flutter app with many features but no use case
 
-## Getting Started
+## Features
 
 - Namegenerator
 - Todo
-- SQFlite Database
+- SQFlite Database to perform CRUD
 - Newspaper Rest API integration
