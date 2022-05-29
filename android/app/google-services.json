@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "520334763807",
-    "project_id": "crud-c0642",
-    "storage_bucket": "crud-c0642.appspot.com"
+    "project_number": "747158682127",
+    "project_id": "fluttercrud-fe509",
+    "storage_bucket": "fluttercrud-fe509.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:520334763807:android:126da9618901fe1501722a",
+        "mobilesdk_app_id": "1:747158682127:android:369e27b923936a33dac17a",
         "android_client_info": {
           "package_name": "com.example.todo"
         }
       },
       "oauth_client": [
         {
-          "client_id": "520334763807-j1luebu7h38bh45hoa2egpibh79ahane.apps.googleusercontent.com",
+          "client_id": "747158682127-oipb3g3jn31caps059tkbhe27h7l9h9k.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBsJr3HSqyBEFN9u2icdP6UowB5MJVGo4Y"
+          "current_key": "AIzaSyDoRWVyYouR3AOUa8UQgvV5r_eZOzjkhzs"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "520334763807-j1luebu7h38bh45hoa2egpibh79ahane.apps.googleusercontent.com",
+              "client_id": "747158682127-oipb3g3jn31caps059tkbhe27h7l9h9k.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
